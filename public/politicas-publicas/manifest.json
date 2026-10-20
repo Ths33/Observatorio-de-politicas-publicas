@@ -1,0 +1,77 @@
+{
+  "name": "observatorio-politicas-publicas",
+  "version": "1",
+  "description": "Índice de leitura da metodologia do Observatório de Políticas Públicas. Não executa downloads automaticamente.",
+  "entrypoint": "https://taleshenrique.dev/politicas-publicas/skill.md",
+  "fallback": "https://taleshenrique.dev/politicas-publicas/skill.zip",
+  "source": "https://github.com/Ths33/Politicas-publicas-skill",
+  "instructions": "Leia o entrypoint primeiro. Consulte arquivos complementares conforme o assunto. Se não conseguir acessar os arquivos individualmente, use o entrypoint consolidado; se ele também falhar, peça o pacote ZIP ao usuário. Não afirme ter lido arquivos inacessíveis.",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "url": "https://taleshenrique.dev/politicas-publicas/skill.md",
+      "purpose": "Metodologia completa consolidada, incluindo todas as referências",
+      "required": true
+    },
+    {
+      "path": "references/analise-eleitoral.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/analise-eleitoral.md",
+      "purpose": "Como analisar compromissos e documentos eleitorais",
+      "required": false
+    },
+    {
+      "path": "references/api_reference.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/api_reference.md",
+      "purpose": "Referências técnicas e APIs públicas",
+      "required": false
+    },
+    {
+      "path": "references/documentario-visual.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/documentario-visual.md",
+      "purpose": "Estrutura de narrativas e gráficos verificáveis",
+      "required": false
+    },
+    {
+      "path": "references/fontes.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/fontes.md",
+      "purpose": "Portais e bases oficiais prioritárias",
+      "required": false
+    },
+    {
+      "path": "references/impactos.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/impactos.md",
+      "purpose": "Avaliação de efeitos e limites de atribuição",
+      "required": false
+    },
+    {
+      "path": "references/instituicoes.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/instituicoes.md",
+      "purpose": "Competências e atribuições institucionais",
+      "required": false
+    },
+    {
+      "path": "references/narrativa-visual.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/narrativa-visual.md",
+      "purpose": "Regras de apresentação visual",
+      "required": false
+    },
+    {
+      "path": "references/periodizacao.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/periodizacao.md",
+      "purpose": "Recortes históricos e comparações entre mandatos",
+      "required": false
+    },
+    {
+      "path": "references/transparencia.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/transparencia.md",
+      "purpose": "Orçamento, gastos e transparência pública",
+      "required": false
+    },
+    {
+      "path": "references/verificacao.md",
+      "url": "https://raw.githubusercontent.com/Ths33/Politicas-publicas-skill/main/references/verificacao.md",
+      "purpose": "Checagem de afirmações, números e fontes",
+      "required": false
+    }
+  ]
+}
