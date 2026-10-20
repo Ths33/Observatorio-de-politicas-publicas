@@ -1,2 +1,26 @@
 @import "tailwindcss";
 :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#182622;background:#f7f8f5;font-synthesis:none}html{scroll-behavior:smooth}body{margin:0}button,a{transition:all .2s ease}::selection{background:#c6ead8;color:#13372a}.container-wide{max-width:1190px;margin-inline:auto;padding-inline:24px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#348264}.heading{letter-spacing:-.055em;line-height:1.05}.glass{background:rgba(255,255,255,.72);backdrop-filter:blur(16px)}.grain{background-image:radial-gradient(#557a6a22 .8px,transparent .8px);background-size:18px 18px}.soft-shadow{box-shadow:0 20px 70px rgba(32,70,53,.09)}.button-primary{background:#184e3a;color:#fff;padding:15px 22px;border-radius:12px;font-weight:700;display:inline-flex;align-items:center;gap:10px;justify-content:center}.button-primary:hover{background:#256c50;transform:translateY(-2px)}.button-outline{border:1px solid #d9e2da;padding:14px 20px;border-radius:12px;font-weight:700;display:inline-flex;align-items:center;gap:9px}.button-outline:hover{background:#fff;border-color:#b1c8b8}.label-pill{border:1px solid #d9e7dd;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;color:#477360;background:#eef7f0}.chart-grid{background-image:linear-gradient(to top,#dce8de 1px,transparent 1px);background-size:100% 25%}
+
+/* Editorial direction: high-contrast typography, hard rules, restrained color. */
+.editorial-site{background:#fff;color:#171717;font-family:Arial,Helvetica,sans-serif}
+.editorial-site ::selection{background:#f8e16a;color:#111}
+.editorial-site .container-wide{max-width:1240px}
+.editorial-site .heading{font-family:Arial,Helvetica,sans-serif;letter-spacing:-.065em;line-height:.98;font-weight:900}
+.editorial-site .eyebrow{color:#111;letter-spacing:.13em;font-size:11px;font-weight:800}
+.editorial-site .glass{background:#fff;backdrop-filter:none}
+.editorial-site .grain{background-image:none}
+.editorial-site .soft-shadow{box-shadow:none}
+.editorial-site .button-primary{background:#111;color:#fff;border:1px solid #111;border-radius:0;box-shadow:none;text-transform:uppercase;letter-spacing:.045em;font-size:12px}
+.editorial-site .button-primary:hover{background:#fff;color:#111;transform:none}
+.editorial-site .button-outline{border:1px solid #111;border-radius:0;text-transform:uppercase;letter-spacing:.04em;font-size:12px}
+.editorial-site .button-outline:hover{background:#111;color:#fff}
+.editorial-site .label-pill{border:1px solid #111;border-radius:0;background:#fff;color:#111}
+.editorial-site section{scroll-margin-top:76px}
+.editorial-site section[id]{border-bottom:1px solid #111}
+.editorial-site .rounded-2xl,.editorial-site .rounded-xl,.editorial-site .rounded-\[28px\]{border-radius:0}
+.editorial-site .bg-\[\#143f30\]{background:#161616}
+.editorial-site .bg-\[\#dcece0\]{background:#f0f0ec}
+.editorial-site .text-\[\#2f936c\],.editorial-site .text-\[\#65a78b\]{color:#111}
+.editorial-site .border-\[\#e6ece5\]{border-color:#111}
+.editorial-site a:focus-visible,.editorial-site button:focus-visible{outline:3px solid #e0bf28;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.editorial-site *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
