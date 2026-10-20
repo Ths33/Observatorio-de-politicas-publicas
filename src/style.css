@@ -176,3 +176,16 @@
 .guided-full pre{white-space:pre-wrap;overflow-wrap:anywhere;font: .9rem/1.6 Arial,Helvetica,sans-serif;margin-top:1rem}
 .guided-error{font-size:.85rem;margin-top:1rem}
 .guided-footnote{font: .8rem/1.6 Arial,Helvetica,sans-serif;color:#4f4e48;margin-top:1.5rem;max-width:65ch}
+
+/* Editorial select: compact dropdown instead of full-screen Android picker */
+.editorial-select{position:relative;width:100%}
+.editorial-select-trigger{width:100%;min-height:3.25rem;background:#f8f7f2;color:#171714;border:1px solid #74736b;border-radius:0;padding:.8rem .95rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;text-align:left;font:1rem/1.4 Arial,Helvetica,sans-serif;cursor:pointer}
+.editorial-select-trigger svg{flex:none;transition:transform .15s ease}
+.editorial-select-trigger[aria-expanded=true] svg{transform:rotate(180deg)}
+.editorial-select-options{position:absolute;z-index:40;top:calc(100% + 5px);left:0;right:0;background:#f8f7f2;border:1px solid #171714;box-shadow:4px 7px 0 rgba(23,23,20,.16);max-height:min(18rem,45vh);overflow-y:auto;overscroll-behavior:contain}
+.editorial-select-options button{width:100%;min-height:3rem;padding:.8rem .95rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;text-align:left;border-bottom:1px solid #d7d6ce;color:#171714;font:.95rem/1.4 Arial,Helvetica,sans-serif;cursor:pointer}
+.editorial-select-options button:last-child{border-bottom:0}
+.editorial-select-options button:hover,.editorial-select-options button.is-active{background:#e4e2d8}
+.editorial-select-options button svg{flex:none}
+.editorial-select-trigger:focus-visible,.editorial-select-options button:focus-visible{outline:3px solid #5b5bd6;outline-offset:2px}
+@media(max-width:640px){.editorial-select-options{max-height:min(17rem,42vh)}}
