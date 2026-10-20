@@ -25,6 +25,6 @@ export default defineConfig(({ mode }) => {
         }
       }
     ],
-    build: { rollupOptions: { input: { main: resolve(process.cwd(), 'index.html'), observatorio: resolve(process.cwd(), 'politicas-publicas/index.html') } } }
+    build: { rollupOptions: { input: { main: resolve(process.cwd(), 'index.html'), observatorio: resolve(process.cwd(), 'politicas-publicas/index.html'), metodologia: resolve(process.cwd(), 'politicas-publicas/metodologia/index.html') } } }
   };
 });
