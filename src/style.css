@@ -153,3 +153,26 @@
 .publication-install-preview summary{cursor:pointer;font-weight:700}
 .publication-install-preview p{white-space:pre-wrap;margin-top:1rem;overflow-wrap:anywhere}
 .publication-install-disclaimer{font: .8rem/1.6 Arial,Helvetica,sans-serif;color:#4f4e48;margin-top:1.2rem;max-width:65ch}
+
+/* Guided investigation: zero backend, editorial form */
+.guided-research{background:#ebeae3}
+.guided-intro{font:1.15rem/1.65 Georgia,"Times New Roman",serif;max-width:39ch;margin-top:1.5rem}
+.guided-privacy{font: .82rem/1.6 Arial,Helvetica,sans-serif;margin-top:2rem;color:#4f4e48;max-width:45ch}
+.guided-form{border-top:3px solid #171714;padding-top:1.3rem;font-family:Arial,Helvetica,sans-serif}
+.guided-field{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.4rem}
+.guided-field label{font-size:.82rem;font-weight:700}
+.guided-field select,.guided-field input{appearance:auto;width:100%;min-height:3.2rem;background:#f8f7f2;color:#171714;border:1px solid #74736b;border-radius:0;padding:.7rem .9rem;font:1rem Arial,Helvetica,sans-serif}
+.guided-field input{margin-top:.3rem}
+.guided-result{border-top:1px solid #79786f;border-bottom:1px solid #79786f;padding:1.3rem 0;margin:1.5rem 0}
+.guided-result-heading{font-size:.72rem;text-transform:uppercase;font-weight:800;letter-spacing:.07em;margin-bottom:.65rem}
+.guided-result p:last-child{font:1.2rem/1.5 Georgia,"Times New Roman",serif}
+.guided-actions{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.guided-actions button{display:inline-flex;align-items:center;gap:.6rem;background:#171714;color:#fff;border:1px solid #171714;padding:1rem 1.2rem;font-size:.88rem;font-weight:700;cursor:pointer}
+.guided-actions button:hover:not(:disabled){background:#393831}
+.guided-actions button:disabled{opacity:.45;cursor:not-allowed}
+.guided-actions a{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.guided-full{border-bottom:1px solid #79786f;margin-top:1.3rem;padding-bottom:1rem;font-size:.86rem}
+.guided-full summary{cursor:pointer;font-weight:700}
+.guided-full pre{white-space:pre-wrap;overflow-wrap:anywhere;font: .9rem/1.6 Arial,Helvetica,sans-serif;margin-top:1rem}
+.guided-error{font-size:.85rem;margin-top:1rem}
+.guided-footnote{font: .8rem/1.6 Arial,Helvetica,sans-serif;color:#4f4e48;margin-top:1.5rem;max-width:65ch}
