@@ -6,7 +6,7 @@ A versão do Observatório segue SemVer: `MAJOR.MINOR.PATCH`. A fonte da versão
 
 1. Fazer alterações e revisar em `main`.
 2. Alterar a versão em `package.json` (por exemplo `npm version patch --no-git-tag-version`) e registrar a mudança em commit.
-3. Rodar `npm ci && npm run build` e confirmar que o deploy de `main` está funcionando.
+3. Rodar `npm install --no-audit --no-fund && npm run build` e confirmar que o deploy de `main` está funcionando.
 4. Criar tag anotada no commit aprovado: `git tag -a v1.0.1 -m 'Release v1.0.1'`.
 5. Publicar: `git push origin main && git push origin v1.0.1`.
 6. GitHub Actions valida a correspondência da tag com `package.json`, executa o build e cria a GitHub Release com notas automáticas. A publicação do site continua a cargo do Cloudflare Pages.
