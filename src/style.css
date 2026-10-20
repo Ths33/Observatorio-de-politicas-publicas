@@ -135,3 +135,21 @@
 .privacy-endnote{padding:1.5rem 0;font: .9rem/1.6 Arial,Helvetica,sans-serif}
 .privacy-endnote p{font:1rem/1.6 Arial,Helvetica,sans-serif;margin:1rem 0}
 @media(max-width:760px){.privacy-body{display:block;padding-top:2rem}.privacy-aside{position:static;margin-bottom:3rem}.privacy-aside nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}.privacy-intro>p{font-size:1.15rem}}
+
+/* Plain-language installation instructions */
+.publication-install{background:#f8f7f2}
+.publication-install-intro{font:1.15rem/1.65 Georgia,"Times New Roman",serif;margin-top:1.5rem;max-width:36ch}
+.publication-install-tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:2px solid #171714;font-family:Arial,Helvetica,sans-serif}
+.publication-install-tabs button{padding:.8rem 1.1rem;font-weight:700;font-size:.9rem;border:1px solid transparent;border-bottom:0;cursor:pointer}
+.publication-install-tabs button.is-selected{background:#171714;color:#fff}
+.publication-install-tabs button:not(.is-selected):hover{background:#e6e5de}
+.publication-install-instructions{font:1rem/1.7 Arial,Helvetica,sans-serif;padding:1.5rem 0}
+.publication-install-instructions p+p{margin-top:.7rem}
+.publication-install-actions{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;font:700 .9rem Arial,Helvetica,sans-serif}
+.publication-install-actions button{background:#171714;color:#fff;display:inline-flex;align-items:center;gap:.7rem;padding:1rem 1.3rem;cursor:pointer}
+.publication-install-actions button:hover{background:#3a3934}
+.publication-install-actions a{display:inline-flex;align-items:center;gap:.5rem;text-decoration:underline;text-underline-offset:4px}
+.publication-install-preview{margin-top:1.5rem;border-top:1px solid #8b8a82;border-bottom:1px solid #8b8a82;padding:1rem 0;font: .9rem/1.65 Arial,Helvetica,sans-serif}
+.publication-install-preview summary{cursor:pointer;font-weight:700}
+.publication-install-preview p{white-space:pre-wrap;margin-top:1rem;overflow-wrap:anywhere}
+.publication-install-disclaimer{font: .8rem/1.6 Arial,Helvetica,sans-serif;color:#4f4e48;margin-top:1.2rem;max-width:65ch}
