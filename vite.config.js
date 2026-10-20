@@ -1,3 +1,5 @@
+import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
@@ -9,7 +11,11 @@ export default defineConfig(({ mode }) => {
   if (gtmId && !/^GTM-[A-Z0-9]+$/i.test(gtmId)) {
     throw new Error('VITE_GTM_ID must be a valid GTM-XXXXXXX container ID');
   }
+  const version = JSON.parse(readFileSync(resolve(process.cwd(), 'package.json'), 'utf8')).version;
+  let commit = process.env.CF_PAGES_COMMIT_SHA || process.env.GITHUB_SHA || '';
+  if (!commit) { try { commit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(); } catch { commit = 'unknown'; } }
   return {
+    define: { __APP_VERSION__: JSON.stringify(version), __APP_COMMIT__: JSON.stringify(commit) },
     base: '/',
     plugins: [
       react(),
