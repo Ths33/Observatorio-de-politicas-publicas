@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'node:path';
+import { GOVERNMENTS } from './src/history-data.js';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
@@ -31,6 +32,6 @@ export default defineConfig(({ mode }) => {
         }
       }
     ],
-    build: { rollupOptions: { input: { main: resolve(process.cwd(), 'index.html'), observatorio: resolve(process.cwd(), 'politicas-publicas/index.html'), metodologia: resolve(process.cwd(), 'politicas-publicas/metodologia/index.html') } } }
+    build: { rollupOptions: { input: { main: resolve(process.cwd(), 'index.html'), observatorio: resolve(process.cwd(), 'politicas-publicas/index.html'), metodologia: resolve(process.cwd(), 'politicas-publicas/metodologia/index.html'), historia: resolve(process.cwd(), 'politicas-publicas/historia/index.html'), temas: resolve(process.cwd(), 'politicas-publicas/historia/temas/index.html'), ...Object.fromEntries(GOVERNMENTS.map(g => ['governo_'+g.id.replaceAll('-','_'), resolve(process.cwd(), 'politicas-publicas/historia/'+g.id+'/index.html')])) } } }
   };
 });
