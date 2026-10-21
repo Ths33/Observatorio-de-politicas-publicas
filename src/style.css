@@ -74,3 +74,20 @@
 @media(max-height:640px) and (min-width:801px){.scene h1{font-size:min(4.5vw,8vh)}.scene p{font-size:13px}.scene-year{margin:7px 0}.scene-inner{padding-top:95px;padding-bottom:85px}.chart-columns{height:20vh}.scene-footer{bottom:85px}}
 @media(max-height:650px) and (max-width:800px){.scene-inner{grid-template-rows:minmax(0,1.2fr) minmax(0,.8fr)}.scene h1{font-size:min(8vw,5vh)}.scene p{font-size:min(3vw,1.7vh)}.scene-visual{max-height:100%}}
 @media(prefers-reduced-motion:reduce){.scene *{filter:none!important;animation:none!important;transition:none!important}}
+
+/* Locked cinematic chapters: one gesture advances one complete frame. */
+html,body,#root{height:100%;overflow:hidden;overscroll-behavior:none}
+.snap-documentary{height:100svh;overflow:hidden;touch-action:pan-x}
+.snap-documentary .story-rail{height:100svh!important;overflow:hidden}
+.snap-documentary .story-sticky{position:relative;top:0;height:100svh;overflow:hidden}
+.snap-documentary .story-track{display:flex;flex-direction:row;will-change:transform}
+.snap-documentary .scene{flex-shrink:0;min-width:100vw;width:100vw;height:100svh!important;min-height:100svh!important;max-height:100svh!important}
+.snap-documentary .drawer-overlay{touch-action:pan-y}
+.snap-documentary .source-drawer{overscroll-behavior:contain;touch-action:pan-y}
+@media(max-width:800px){
+.snap-documentary{touch-action:pan-x}
+.snap-documentary .story-track{display:flex!important;flex-direction:column!important;width:100vw!important}
+.snap-documentary .scene{width:100vw!important;min-width:100vw!important;flex:0 0 100svh!important;scroll-snap-align:none}
+.snap-documentary .story-sticky{height:100svh!important}
+.snap-documentary .scene-inner{min-height:0!important;height:100%!important}
+}
