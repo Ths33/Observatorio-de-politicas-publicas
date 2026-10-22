@@ -1,0 +1,16 @@
+---
+interface Props { title?: string; description?: string }
+const { title = 'Tales Henrique', description = 'Site institucional de Tales Henrique.' } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101414" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <title>{title}</title>
+  </head>
+  <body><slot /></body>
+</html>

@@ -1,14 +1,8 @@
 {
-  "$schema": "https://unpkg.com/wrangler/config-schema.json",
   "name": "observatorio-de-politicas-publicas",
-  "compatibility_date": "2026-10-19",
-  "observability": {
-    "enabled": true
-  },
+  "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application",
-    "binding": "ASSETS"
-  },
-  "main": "./src/asset-worker.js"
+    "not_found_handling": "404-page"
+  }
 }

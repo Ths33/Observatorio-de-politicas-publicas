@@ -1,5 +1,28 @@
-# Brasil — Uma história em movimento
+# Tales Henrique — Site institucional
 
-Documentário interativo na raiz do domínio, com 11 capítulos presidenciais. Vite + React; Cloudflare Pages executa `npm run build` e publica `dist`.
+Base limpa em **Astro** (site estático), pronta para desenvolvimento.
 
-Conteúdo e fontes em `src/history-data.js`. A série do IPCA é a única visualização quantitativa desta edição; demais indicadores ainda precisam de verificação e produção editorial.
+## Desenvolvimento
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+Saída: `dist/`. Deploy atual via Cloudflare Workers: `npm run build` e `npx wrangler deploy`.
+
+## Estrutura
+
+- `src/pages/`: rotas Astro
+- `src/layouts/`: layouts reutilizáveis
+- `public/`: arquivos estáticos
+- `astro.config.mjs`: configuração Astro
+- `wrangler.jsonc`: publicação de assets estáticos via Cloudflare Workers
+
+O projeto antigo foi retirado da branch principal. O histórico Git permanece recuperável.
