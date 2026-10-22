@@ -1,40 +1,15 @@
-import { gsap } from 'gsap';
-export async function bootExperience(){
-  const sections=[...document.querySelectorAll<HTMLElement>('.scene')];
-  const nav=[...document.querySelectorAll<HTMLButtonElement>('[data-go]')];
-  const canvas=document.querySelector<HTMLCanvasElement>('#matter');
-  const stage=document.querySelector<HTMLElement>('#stage')!;
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let current=0, busy=false, touchY=0, lastWheel=0;
-  let setShape:((n:number)=>void)|undefined;
-  let pulseShape:(()=>void)|undefined;
-  if(canvas&&!reduced){
-    try{
-      const {createMatter}=await import('./matter');
-      const matter=await createMatter(canvas);
-      setShape=matter.setScene;pulseShape=matter.pulse;
-      document.addEventListener('visibilitychange',()=>matter.setVisible(!document.hidden));
-    }catch(error){console.warn('WebGL unavailable; HTML experience remains functional',error);canvas.style.display='none'}
-  }else if(canvas)canvas.style.display='none';
-  function go(to:number){
-    if(busy||to<0||to>=sections.length||to===current)return;
-    busy=true;const from=sections[current],next=sections[to];const old=current;current=to;
-    next.classList.add('is-active');next.removeAttribute('inert');
-    nav.forEach((b,i)=>i===to?b.setAttribute('aria-current','step'):b.removeAttribute('aria-current'));
-    document.querySelector('#counter')!.textContent=`0${to+1} / 03`;
-    setShape?.(to);
-    if(reduced){from.classList.remove('is-active');from.setAttribute('inert','');busy=false;return}
-    gsap.set(next,{opacity:0,clipPath:to>old?'inset(100% 0 0 0)':'inset(0 0 100% 0)'});
-    gsap.timeline({onComplete:()=>{from.classList.remove('is-active');from.setAttribute('inert','');gsap.set(next,{clearProps:'opacity,clipPath'});busy=false}})
-      .to(from,{opacity:0,duration:.45,ease:'power2.inOut'},0)
-      .to(next,{opacity:1,clipPath:'inset(0% 0 0% 0)',duration:1.1,ease:'power3.inOut'},.08);
-  }
-  nav.forEach((b,i)=>b.addEventListener('click',()=>go(i)));
-  document.querySelector('#next')?.addEventListener('click',()=>go(current+1));
-  document.querySelector('#prev')?.addEventListener('click',()=>go(current-1));
-  document.querySelector('#pulse')?.addEventListener('click',()=>{pulseShape?.();const s=document.querySelector('#signal');if(s)s.textContent='SYSTEM / SIGNAL TRANSMITTED'});
-  window.addEventListener('keydown',e=>{if(document.activeElement?.tagName==='BUTTON'||document.activeElement?.tagName==='A')return;if(['ArrowDown','PageDown','ArrowRight'].includes(e.key)){e.preventDefault();go(current+1)}if(['ArrowUp','PageUp','ArrowLeft'].includes(e.key)){e.preventDefault();go(current-1)}});
-  stage.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<12)return;e.preventDefault();const now=performance.now();if(now-lastWheel<1100)return;lastWheel=now;go(current+(e.deltaY>0?1:-1))},{passive:false});
-  stage.addEventListener('touchstart',e=>{touchY=e.touches[0].clientY},{passive:true});
-  stage.addEventListener('touchend',e=>{const delta=touchY-e.changedTouches[0].clientY;if(Math.abs(delta)>55)go(current+(delta>0?1:-1))},{passive:true});
+import {gsap} from 'gsap';
+export function bootExperience(){
+const scenes=Array.from(document.querySelectorAll<HTMLElement>('.scene'));const buttons=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-go]'));const stage=document.querySelector<HTMLElement>('#viewport');const canvas=document.querySelector<HTMLCanvasElement>('#matter');if(!stage||!scenes.length)return;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)');let index=0;let locked=false;let lastWheel=0;let startY=0;let visual:{setScene:(n:number)=>void;pulse:()=>void;setVisible:(v:boolean)=>void;dispose:()=>void}|undefined;
+if(canvas&&!reduce.matches){import('./matter').then(async({createMatter})=>{if(!reduce.matches)visual=await createMatter(canvas)}).catch(()=>{canvas.style.display='none'})}else if(canvas)canvas.style.display='none';
+const progress=document.querySelector('#progress');function updateNav(){buttons.forEach((b,i)=>{if(i===index)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});if(progress)progress.textContent=`${String(index+1).padStart(2,'0')} / ${String(scenes.length).padStart(2,'0')}`}
+function go(to:number){if(locked||to===index||to<0||to>=scenes.length)return;locked=true;const old=scenes[index];const next=scenes[to];const forward=to>index;index=to;next.classList.add('is-active');next.removeAttribute('inert');updateNav();visual?.setScene(to);if(reduce.matches){old.classList.remove('is-active');old.setAttribute('inert','');locked=false;return}
+gsap.killTweensOf([old,next]);gsap.set(next,{opacity:1,clipPath:forward?'inset(100% 0 0 0)':'inset(0 0 100% 0)'});gsap.timeline({onComplete:()=>{old.classList.remove('is-active');old.setAttribute('inert','');gsap.set(next,{clearProps:'opacity,clipPath'});locked=false}}).to(old,{opacity:0,duration:.4,ease:'power2.inOut'},0).to(next,{clipPath:'inset(0% 0 0% 0)',duration:1.05,ease:'expo.inOut'},.08)}
+buttons.forEach((button,i)=>button.addEventListener('click',()=>go(i)));document.querySelector('#previous')?.addEventListener('click',()=>go(index-1));document.querySelector('#following')?.addEventListener('click',()=>go(index+1));
+const activate=document.querySelector<HTMLButtonElement>('#activate');activate?.addEventListener('click',()=>{visual?.pulse();const out=document.querySelector('#system-output');if(!out)return;out.textContent='DEMO: REQUEST → LLM → MCP TOOL → BUSINESS DATA → RESPONSE';activate.textContent='RUN AGAIN ↗'});
+stage.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<14)return;e.preventDefault();const now=performance.now();if(now-lastWheel<1100||locked)return;lastWheel=now;go(index+(e.deltaY>0?1:-1))},{passive:false});
+stage.addEventListener('touchstart',e=>{startY=e.touches[0].clientY},{passive:true});stage.addEventListener('touchend',e=>{if((e.target as HTMLElement).closest('button,a'))return;const delta=startY-e.changedTouches[0].clientY;if(Math.abs(delta)>55)go(index+(delta>0?1:-1))},{passive:true});
+window.addEventListener('keydown',e=>{if(location.hash==='#reading'||(e.target as HTMLElement)?.closest('button,a,input,textarea,select'))return;const down=['ArrowDown','ArrowRight','PageDown'];const up=['ArrowUp','ArrowLeft','PageUp'];if(down.includes(e.key)||up.includes(e.key)){e.preventDefault();go(index+(down.includes(e.key)?1:-1))}if(e.key==='Home')go(0);if(e.key==='End')go(scenes.length-1)});
+document.addEventListener('visibilitychange',()=>visual?.setVisible(!document.hidden));reduce.addEventListener('change',()=>{if(reduce.matches){visual?.dispose();visual=undefined;if(canvas)canvas.style.display='none'}else if(canvas){canvas.style.display='block';import('./matter').then(async({createMatter})=>{visual=await createMatter(canvas);visual.setScene(index)}).catch(()=>canvas.style.display='none')}});
 }
