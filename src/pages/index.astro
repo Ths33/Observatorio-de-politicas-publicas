@@ -1,20 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/experience.css';
 ---
-<BaseLayout title="Tales Henrique — Em construção" description="Um novo site está a caminho.">
-  <main>
-    <span class="eyebrow">TALES HENRIQUE</span>
-    <h1>Em construção<span>.</span></h1>
-    <p>Um novo site está chegando.</p>
+<BaseLayout title="Tales Henrique — Creative Developer & AI Engineer" description="Senior Full-Stack Developer and AI Engineer partnering with ambitious digital agencies.">
+  <main id="experience" aria-label="From Code to Experience">
+    <div class="topbar"><a class="brand" href="/" aria-label="Tales Henrique home">TH<span>·</span></a><span>INDEPENDENT ENGINEER / WORLDWIDE</span><a href="mailto:tales.33.henriques@gmail.com">LET'S TALK ↗</a></div>
+    <div class="stage" id="stage">
+      <canvas id="matter" aria-hidden="true"></canvas>
+      <section class="scene is-active" data-scene="0" aria-label="Introduction">
+        <div class="kicker">01 / AN INTRODUCTION</div><div class="intro"><p class="overline">SENIOR FULL-STACK DEVELOPER<br>AI ENGINEER / TECHNICAL PARTNER</p><h1>TALES<br><em>HENRIQUE</em><span class="period">.</span></h1><p class="subline">I TURN COMPLEXITY INTO EXPERIENCE.</p></div><div class="bottom-note">SCROLL TO EXPLORE <span>↓</span></div>
+      </section>
+      <section class="scene" data-scene="1" aria-label="The craft" inert>
+        <div class="kicker">02 / THE CRAFT</div><div class="editorial"><span class="index">DESIGN × ENGINEERING</span><h2>NOT JUST<br><i>BUILT.</i><br>FELT.</h2><p>Every pixel has a purpose. Every interaction is engineered. Performance, accessibility and craft are part of the same system.</p></div><div class="bottom-note">FORM FOLLOWS FUNCTION <span>↗</span></div>
+      </section>
+      <section class="scene" data-scene="2" aria-label="The intelligence" inert>
+        <div class="kicker">03 / THE INTELLIGENCE</div><div class="intelligence"><span class="index">SYSTEMS THAT THINK</span><h2>BEYOND<br>THE <i>INTERFACE.</i></h2><p>LLM applications. MCP integrations. Automated workflows. Software designed to connect intelligence with real operations.</p><button id="pulse" type="button">ACTIVATE THE SYSTEM <span>↗</span></button><div class="signal" id="signal" aria-live="polite">SYSTEM / IDLE</div></div><div class="bottom-note">BUILD SOMETHING MEANINGFUL <span>↗</span></div>
+      </section>
+    </div>
+    <nav class="chapter-nav" aria-label="Chapters"><button data-go="0" aria-current="step">01 <span>INTRO</span></button><button data-go="1">02 <span>CRAFT</span></button><button data-go="2">03 <span>INTELLIGENCE</span></button></nav>
+    <div class="controls"><button id="prev" aria-label="Previous chapter">↑</button><span id="counter" aria-live="polite">01 / 03</span><button id="next" aria-label="Next chapter">↓</button></div>
+    <a class="read-link" href="#reading" id="read-toggle">READ WITHOUT MOTION ↗</a>
   </main>
+  <section id="reading" class="reading" aria-label="Accessible reading version"><h2>From Code to Experience</h2><p>Tales Henrique — Senior Full-Stack Developer, AI Engineer and technical partner for international digital agencies.</p><h3>The Craft</h3><p>Design, engineering, performance and accessibility come together to create thoughtful digital products.</p><h3>The Intelligence</h3><p>Building LLM-powered applications, MCP integrations and AI-driven workflows that connect assistants to business systems.</p><p><a href="mailto:tales.33.henriques@gmail.com">Let's build something ↗</a></p><a href="#experience">BACK TO EXPERIENCE ↑</a></section>
+  <script>
+    import { bootExperience } from '../lib/experience';
+    bootExperience();
+  </script>
 </BaseLayout>
-<style>
-  :global(*){box-sizing:border-box}
-  :global(html){font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#101414;color:#f4f4ef}
-  :global(body){margin:0}
-  main{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,8vw,120px)}
-  .eyebrow{font-size:12px;font-weight:750;letter-spacing:.2em;color:#9caaa6}
-  h1{font-size:clamp(48px,10vw,130px);line-height:1;letter-spacing:-.08em;margin:25px 0}
-  h1 span{color:#b5f1a1}
-  p{font-size:clamp(16px,2vw,22px);color:#a7b2ae}
-</style>
