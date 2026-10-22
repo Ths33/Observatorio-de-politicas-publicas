@@ -1,29 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/experience.css';
+import {chapters} from '../content/chapters';
 ---
-<BaseLayout title="Tales Henrique — Creative Developer & AI Engineer" description="Senior Full-Stack Developer and AI Engineer partnering with ambitious digital agencies.">
-  <main id="experience" aria-label="From Code to Experience">
-    <div class="topbar"><a class="brand" href="/" aria-label="Tales Henrique home">TH<span>·</span></a><span>INDEPENDENT ENGINEER / WORLDWIDE</span><a href="mailto:tales.33.henriques@gmail.com">LET'S TALK ↗</a></div>
-    <div class="stage" id="stage">
-      <canvas id="matter" aria-hidden="true"></canvas>
-      <section class="scene is-active" data-scene="0" aria-label="Introduction">
-        <div class="kicker">01 / AN INTRODUCTION</div><div class="intro"><p class="overline">SENIOR FULL-STACK DEVELOPER<br>AI ENGINEER / TECHNICAL PARTNER</p><h1>TALES<br><em>HENRIQUE</em><span class="period">.</span></h1><p class="subline">I TURN COMPLEXITY INTO EXPERIENCE.</p></div><div class="bottom-note">SCROLL TO EXPLORE <span>↓</span></div>
-      </section>
-      <section class="scene" data-scene="1" aria-label="The craft" inert>
-        <div class="kicker">02 / THE CRAFT</div><div class="editorial"><span class="index">DESIGN × ENGINEERING</span><h2>NOT JUST<br><i>BUILT.</i><br>FELT.</h2><p>Every pixel has a purpose. Every interaction is engineered. Performance, accessibility and craft are part of the same system.</p></div><div class="bottom-note">FORM FOLLOWS FUNCTION <span>↗</span></div>
-      </section>
-      <section class="scene" data-scene="2" aria-label="The intelligence" inert>
-        <div class="kicker">03 / THE INTELLIGENCE</div><div class="intelligence"><span class="index">SYSTEMS THAT THINK</span><h2>BEYOND<br>THE <i>INTERFACE.</i></h2><p>LLM applications. MCP integrations. Automated workflows. Software designed to connect intelligence with real operations.</p><button id="pulse" type="button">ACTIVATE THE SYSTEM <span>↗</span></button><div class="signal" id="signal" aria-live="polite">SYSTEM / IDLE</div></div><div class="bottom-note">BUILD SOMETHING MEANINGFUL <span>↗</span></div>
-      </section>
-    </div>
-    <nav class="chapter-nav" aria-label="Chapters"><button data-go="0" aria-current="step">01 <span>INTRO</span></button><button data-go="1">02 <span>CRAFT</span></button><button data-go="2">03 <span>INTELLIGENCE</span></button></nav>
-    <div class="controls"><button id="prev" aria-label="Previous chapter">↑</button><span id="counter" aria-live="polite">01 / 03</span><button id="next" aria-label="Next chapter">↓</button></div>
-    <a class="read-link" href="#reading" id="read-toggle">READ WITHOUT MOTION ↗</a>
-  </main>
-  <section id="reading" class="reading" aria-label="Accessible reading version"><h2>From Code to Experience</h2><p>Tales Henrique — Senior Full-Stack Developer, AI Engineer and technical partner for international digital agencies.</p><h3>The Craft</h3><p>Design, engineering, performance and accessibility come together to create thoughtful digital products.</p><h3>The Intelligence</h3><p>Building LLM-powered applications, MCP integrations and AI-driven workflows that connect assistants to business systems.</p><p><a href="mailto:tales.33.henriques@gmail.com">Let's build something ↗</a></p><a href="#experience">BACK TO EXPERIENCE ↑</a></section>
-  <script>
-    import { bootExperience } from '../lib/experience';
-    bootExperience();
-  </script>
+<BaseLayout title="Tales Henrique — Creative Engineering & AI" description="Tales Henrique: senior full-stack engineer and AI application engineer. Technical partnerships for international agencies.">
+<main id="experience" aria-label="Immersive portfolio">
+<header class="masthead"><a class="monogram" href="/" aria-label="Tales Henrique home">TH<span>.</span></a><span class="masthead-center">INDEPENDENT ENGINEER — SÃO PAULO / WORLDWIDE</span><a class="contact" href="mailto:tales.33.henriques@gmail.com">START A CONVERSATION ↗</a></header>
+<div class="viewport" id="viewport"><canvas id="matter" aria-hidden="true"></canvas>
+{chapters.map((chapter,index)=><section class:list={['scene',{'is-active':index===0}]} data-scene={index} data-variant={chapter.variant} inert={index!==0} aria-label={chapter.name}>
+  <div class="chapter-meta"><span>{String(index+1).padStart(2,'0')} / {String(chapters.length).padStart(2,'0')}</span><span>{chapter.eyebrow}</span></div>
+  <div class="scene-copy">
+    <p class="scene-overline">{chapter.overline}</p>
+    <h1 class="scene-title">{chapter.title.map((line,i)=><span class:list={['title-line',{'accent':i===chapter.accentLine}]}>{line}</span>)}</h1>
+    <p class="scene-description">{chapter.description}</p>
+    {chapter.points && <ul class="scene-points">{chapter.points.map(point=><li>{point}</li>)}</ul>}
+    {chapter.cta && <a class="scene-cta" href={chapter.cta.href}>{chapter.cta.label} <span aria-hidden="true">↗</span></a>}
+    {chapter.interactive && <div class="system-controls"><button id="activate" type="button">RUN SYSTEM DEMO ↗</button><output id="system-output" aria-live="polite">INPUT → MODEL → TOOL → RESPONSE</output></div>}
+  </div>
+  <p class="scene-footer">{chapter.footer}</p>
+</section>)}
+</div>
+<nav class="chapter-nav" aria-label="Chapter navigation">{chapters.map((chapter,i)=><button type="button" data-go={i} aria-current={i===0?'step':undefined}><span class="nav-number">{String(i+1).padStart(2,'0')}</span><span class="nav-name">{chapter.name}</span></button>)}</nav>
+<div class="scene-controls"><button id="previous" type="button" aria-label="Previous scene">↑</button><span id="progress" aria-live="polite">01 / {String(chapters.length).padStart(2,'0')}</span><button id="following" type="button" aria-label="Next scene">↓</button></div>
+<a class="reading-toggle" href="#reading">READING MODE ↗</a>
+</main>
+<section class="reading" id="reading" aria-label="Linear accessible portfolio">
+<header><p>TALES HENRIQUE / CREATIVE ENGINEERING</p><a href="#experience">RETURN TO EXPERIENCE ↑</a></header>
+{chapters.map(chapter=><article><p class="reading-kicker">{chapter.eyebrow}</p><h2>{chapter.title.join(' ')}</h2><p>{chapter.description}</p>{chapter.points&&<ul>{chapter.points.map(point=><li>{point}</li>)}</ul>}{chapter.cta&&<p><a href={chapter.cta.href}>{chapter.cta.label} ↗</a></p>}</article>)}
+<footer><a href="https://www.linkedin.com/in/taleshenriquesilva" rel="me">LINKEDIN ↗</a> <a href="mailto:tales.33.henriques@gmail.com">EMAIL ↗</a></footer>
+</section>
+<script>import {bootExperience} from '../lib/experience';bootExperience();</script>
 </BaseLayout>
