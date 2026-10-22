@@ -1,8 +1,13 @@
-# Tales Henrique — From Code to Experience
+# Tales Henrique — Creative Engineering
 
-Immersive Astro + TypeScript + GSAP + Three.js portfolio.
+Bilingual editorial portfolio built with Astro and TypeScript.
 
-## Development
+- English: /en/
+- Português: /pt/
+- Localized engineering case studies: /en/work/{slug}/ and /pt/work/{slug}/
+- / redirects to /en/
+
+## Commands
 
 ```bash
 npm install
@@ -11,26 +16,18 @@ npm run build
 npm run dev
 ```
 
-Deployment is managed by the site owner. No deployment automation is executed by this project.
+## Structure
 
-## Architecture
+- `src/content/site.ts` — EN/PT editorial content and case studies
+- `src/components/Portfolio.astro` — homepage, engineering diagram and AI simulation
+- `src/pages/[lang]/work/[slug].astro` — static localized case-study pages
+- `src/lib/portfolio.ts` — progressive enhancement
+- `src/styles/portfolio.css` — responsive editorial layout
+- `src/layouts/BaseLayout.astro` — canonical, hreflang, Open Graph, Person JSON-LD
+- `@astrojs/sitemap` — sitemap at build time
 
-- `src/content/chapters.ts`: verified editorial content and scene definitions.
-- `src/pages/index.astro`: semantic SSR/SSG scene markup and accessible linear reading mode.
-- `src/lib/experience.ts`: discrete scene navigation, input handling, GSAP transitions.
-- `src/lib/matter.ts`: on-demand Three.js geometry and cleanup.
-- `src/styles/experience.css`: visual direction and responsive compositions.
+The AI flow is an interactive conceptual simulation, not a live model. Professional figures come from the supplied CV and have not been independently audited.
 
-## Important
+## Verification status
 
-The AI system interaction is a **visual architecture demonstration**, not a live AI backend. No fabricated AI response or client metrics are displayed. Professional facts are drawn from the supplied resume; reported performance numbers are not independently audited.
-
-## QA checklist (not yet verified)
-
-- Desktop 1920x1080; mobile 390x844 and 360x640.
-- Keyboard, touch, wheel and trackpad.
-- Reduced motion, WebGL disabled, browser zoom and short viewport.
-- Lighthouse performance/accessibility/SEO/best practices.
-- All scenes fit; use reading mode if user zoom/text size makes fixed scenes unsuitable.
-
-Do not treat repository commits as proof of successful build or deploy.
+Changes were committed to main via GitHub. Build, browser testing, accessibility audit and Lighthouse have **not** been run in this environment. Refresh the npm lockfile with `npm install` before using `npm ci`. Deployment is handled by the repository owner.
