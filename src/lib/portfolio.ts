@@ -1,0 +1,11 @@
+import {gsap} from 'gsap';
+const root=document.querySelector('[data-portfolio]');
+if(root){const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;const practice=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-practice-select]'));const circles=Array.from(document.querySelectorAll<SVGCircleElement>('[data-node-circle]'));
+function select(i:number){practice.forEach((button,n)=>{button.classList.toggle('selected',n===i);button.setAttribute('aria-pressed',String(n===i))});circles.forEach((circle,n)=>{circle.classList.toggle('active',n===i);if(!reduce)gsap.to(circle,{attr:{r:n===i?55:38},duration:.55,ease:'power3.out'});else circle.setAttribute('r',String(n===i?55:38))})}
+practice.forEach((button,i)=>button.addEventListener('click',()=>select(i)));select(0);
+const steps=Array.from(document.querySelectorAll<HTMLElement>('[data-step]'));const status=document.querySelector<HTMLOutputElement>('[data-status]');let timer:number|undefined;let runId=0;
+function reset(){runId++;if(timer)clearTimeout(timer);steps.forEach(step=>step.classList.remove('active','complete'));if(status)status.textContent='READY / CONCEPTUAL DEMO'}
+document.querySelector('[data-reset]')?.addEventListener('click',reset);
+document.querySelector('[data-run]')?.addEventListener('click',()=>{reset();const id=runId;let i=0;const advance=()=>{if(id!==runId)return;if(i>0){steps[i-1].classList.remove('active');steps[i-1].classList.add('complete')}if(i===steps.length){if(status)status.textContent='DEMO COMPLETE / NO LIVE DATA';return}steps[i].classList.add('active');if(status)status.textContent='PROCESSING / '+steps[i].querySelector('strong')?.textContent;i++;timer=window.setTimeout(advance,reduce?100:650)};advance()});
+if(!reduce&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.section-heading,.work-card,.practice-layout').forEach(el=>observer.observe(el))}
+}
