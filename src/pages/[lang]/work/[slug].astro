@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';import {content,caseDetails,type Lang} from '../../../content/site';import '../../../styles/portfolio.css';
+export function getStaticPaths(){return (['en','pt'] as const).flatMap(lang=>Object.keys(caseDetails).map(slug=>({params:{lang,slug}})))}
+const lang=(Astro.params.lang==='pt'?'pt':'en') as Lang;const slug=Astro.params.slug as keyof typeof caseDetails;const detail=caseDetails[slug];const t=content[lang];const title=t.cases.find(c=>c[3]===slug)?.[0]||detail.company;const sections=detail[lang];
+---
+<BaseLayout lang={lang} title={title+' — Tales Henrique'} description={sections[0]}><main class="case-page"><header class="case-header"><a href={'/'+lang+'/'}>tales<span>.</span></a><a href={'/'+lang+'/#work'}>{t.back} ↖</a></header><article><div class="case-overline">SELECTED WORK / {detail.company} / {detail.period}</div><h1>{title}</h1><div class="case-hero-visual" data-kind={slug} aria-hidden="true"><div class="case-hero-shape"></div></div><div class="case-article">{sections.map((text,i)=><section><span>0{i+1}</span><div><h2>{t.caseSections[i]}</h2><p>{text}</p></div></section>)}</div><a class="case-back" href={'/'+lang+'/#work'}>{t.back} ↖</a></article></main></BaseLayout>
