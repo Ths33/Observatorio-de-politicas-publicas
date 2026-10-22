@@ -1,16 +1,7 @@
 ---
-interface Props { title?: string; description?: string }
-const { title = 'Tales Henrique', description = 'Site institucional de Tales Henrique.' } = Astro.props;
+interface Props{title?:string;description?:string}
+const {title='Tales Henrique — Creative Engineering',description='Senior Full-Stack Developer and AI Engineer for international agencies.'}=Astro.props;
+const canonical=new URL(Astro.url.pathname,Astro.site);
+const schema={'@context':'https://schema.org','@type':'Person',name:'Tales Henrique',url:'https://taleshenrique.dev',jobTitle:['Senior Full-Stack Developer','AI Engineer'],sameAs:['https://www.linkedin.com/in/taleshenriquesilva']};
 ---
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#101414" />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-    <title>{title}</title>
-  </head>
-  <body><slot /></body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#101110"/><meta name="description" content={description}/><link rel="canonical" href={canonical}/><meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta name="twitter:card" content="summary"/><script type="application/ld+json" set:html={JSON.stringify(schema)}/><title>{title}</title></head><body><slot/></body></html>
