@@ -1,28 +1,36 @@
-# Tales Henrique — Site institucional
+# Tales Henrique — From Code to Experience
 
-Base limpa em **Astro** (site estático), pronta para desenvolvimento.
+Immersive Astro + TypeScript + GSAP + Three.js portfolio.
 
-## Desenvolvimento
+## Development
 
 ```bash
 npm install
+npm run check
+npm run build
 npm run dev
 ```
 
-## Build
+Deployment is managed by the site owner. No deployment automation is executed by this project.
 
-```bash
-npm run build
-```
+## Architecture
 
-Saída: `dist/`. Deploy atual via Cloudflare Workers: `npm run build` e `npx wrangler deploy`.
+- `src/content/chapters.ts`: verified editorial content and scene definitions.
+- `src/pages/index.astro`: semantic SSR/SSG scene markup and accessible linear reading mode.
+- `src/lib/experience.ts`: discrete scene navigation, input handling, GSAP transitions.
+- `src/lib/matter.ts`: on-demand Three.js geometry and cleanup.
+- `src/styles/experience.css`: visual direction and responsive compositions.
 
-## Estrutura
+## Important
 
-- `src/pages/`: rotas Astro
-- `src/layouts/`: layouts reutilizáveis
-- `public/`: arquivos estáticos
-- `astro.config.mjs`: configuração Astro
-- `wrangler.jsonc`: publicação de assets estáticos via Cloudflare Workers
+The AI system interaction is a **visual architecture demonstration**, not a live AI backend. No fabricated AI response or client metrics are displayed. Professional facts are drawn from the supplied resume; reported performance numbers are not independently audited.
 
-O projeto antigo foi retirado da branch principal. O histórico Git permanece recuperável.
+## QA checklist (not yet verified)
+
+- Desktop 1920x1080; mobile 390x844 and 360x640.
+- Keyboard, touch, wheel and trackpad.
+- Reduced motion, WebGL disabled, browser zoom and short viewport.
+- Lighthouse performance/accessibility/SEO/best practices.
+- All scenes fit; use reading mode if user zoom/text size makes fixed scenes unsuitable.
+
+Do not treat repository commits as proof of successful build or deploy.
